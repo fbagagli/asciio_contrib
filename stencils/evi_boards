@@ -1,0 +1,37 @@
+use strict ;
+use warnings ;
+
+use  App::Asciio::Stencil qw(create_box create_element) ;
+
+my @ascii =
+	(
+	'tricore_297_evb' => <<'EOA',
+    .--------------.
+    |PWR |         |
+    |----'         |
+    |   Tricore    |
+    | Starter Kit  |
+    | TC297 board  |
+    |              |
+    |---.      .---|
+    |   |      |   |
+    |   |      |   |
+    |___'      |___|
+    |              |
+    |---.      .---|
+    |   |      |   |
+    |   |      |   |
+    |___'      |___|
+    '--------------'
+EOA
+
+) ;
+
+my @boxes ;
+
+for(my $ascii_index = 0 ; $ascii_index < $#ascii ; $ascii_index+= 2)
+	{
+	push @boxes, create_box(TEXT_ONLY => $ascii[$ascii_index + 1], NAME => $ascii[$ascii_index], ) ;
+	}
+
+[@boxes] ;

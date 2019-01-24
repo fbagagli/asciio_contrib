@@ -1,0 +1,66 @@
+use strict ;
+use warnings ;
+
+use  App::Asciio::Stencil qw(create_box create_element) ;
+
+my @ascii =
+	(
+	'led_vertical' => <<'EOA',
+   |
+ __|__
+ \   /
+__\_/__
+   |
+   |
+EOA
+
+	'resistor_vertical' => <<'EOA',
+|
+\
+/
+\
+/
+|
+EOA
+
+	'resistor_horizontal' => <<'EOA',
+--/\/\/\--
+EOA
+
+	'capacitor_vertical' => <<'EOA',
+   |
+   |
+-------
+-------
+   |
+   |
+EOA
+
+	'capacitor_horizontal' => <<'EOA',
+   | |
+---| |---
+   | |
+EOA
+	'switch_vertical' => <<'EOA',
+  |
+  0 |
+    |-
+  0 |
+  |
+EOA
+
+	'switch_orizontal' => <<'EOA',
+  ___|___  
+--o     o--
+EOA
+
+) ;
+
+my @boxes ;
+
+for(my $ascii_index = 0 ; $ascii_index < $#ascii ; $ascii_index+= 2)
+	{
+	push @boxes, create_box(TEXT_ONLY => $ascii[$ascii_index + 1], NAME => $ascii[$ascii_index], ) ;
+	}
+
+[@boxes] ;
